@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "twinai"
+version = "0.1.0"
+description = "A passive, privacy-first agent that turns an engineer's work activity into a queryable knowledge twin."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Anirudh Vadera" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+twinai = "twinai.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+twinai = ["data/*.ndjson"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
