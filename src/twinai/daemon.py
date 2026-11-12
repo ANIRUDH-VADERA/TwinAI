@@ -59,7 +59,7 @@ def make_server(twin: Twin, port: int = 7331) -> ThreadingHTTPServer:
                         a = twin.ask(q)
                     return self._send(200, {"status": a.status, "confidence": a.confidence, "answer": a.text,
                                             "domains": a.domains, "breakdown": a.breakdown})
-            except (ValueError, json.JSONDecodeError) as err:
+            except (ValueError, TypeError, AttributeError) as err:
                 return self._send(400, {"error": str(err)})
             self._send(404, {"error": "not found"})
 

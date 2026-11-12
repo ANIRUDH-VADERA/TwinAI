@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 # How much a fact from each source is trusted when scoring answers.
 SOURCE_QUALITY = {
@@ -16,7 +16,7 @@ SOURCE_QUALITY = {
 
 
 def now_iso() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+    return datetime.now(UTC).isoformat(timespec="seconds")
 
 
 @dataclass
@@ -36,7 +36,7 @@ class Event:
     @classmethod
     def from_dict(cls, d: dict) -> Event:
         if not isinstance(d.get("source"), str) or not isinstance(d.get("content"), str):
-            raise ValueError("event needs string 'source' and 'content'")
+            raise TypeError("event needs string 'source' and 'content'")
         ts = d.get("ts") or now_iso()
         datetime.fromisoformat(ts)  # reject malformed timestamps early
         meta = d.get("meta") if isinstance(d.get("meta"), dict) else {}

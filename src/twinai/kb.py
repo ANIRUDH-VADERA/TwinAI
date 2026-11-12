@@ -16,7 +16,7 @@ import math
 import re
 import subprocess
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from itertools import combinations
 from pathlib import Path
 
@@ -120,7 +120,7 @@ class KnowledgeBase:
         if domain not in scores:
             return 0.0
         top = max(s["score"] for s in scores.values())
-        days = ((now or datetime.now(timezone.utc)) - datetime.fromisoformat(scores[domain]["last"])).days
+        days = ((now or datetime.now(UTC)) - datetime.fromisoformat(scores[domain]["last"])).days
         return scores[domain]["score"] / top * math.pow(0.5, max(0, days) / EXPERTISE_HALF_LIFE_DAYS)
 
     def passages(self) -> list[Passage]:

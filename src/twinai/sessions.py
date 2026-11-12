@@ -21,7 +21,7 @@ DOMAIN_SIGNALS: dict[str, list[str]] = {
     "python": ["python", "pip install", "pytest", "venv", ".py"],
     "scala": ["sbt", "scala", "zio", "akka"],
 }
-_SIGNAL_RES = {d: re.compile("|".join(re.escape(s) for s in sigs), re.I) for d, sigs in DOMAIN_SIGNALS.items()}
+_SIGNAL_RES = {d: re.compile("|".join(re.escape(s) for s in sigs), re.IGNORECASE) for d, sigs in DOMAIN_SIGNALS.items()}
 
 
 def detect_domains(text: str) -> set[str]:

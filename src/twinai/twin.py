@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from .bm25 import BM25, tokenize
@@ -71,7 +71,7 @@ class Twin:
 
     # ---- query engine: BM25 -> graph expansion -> scoring -> answer ----
     def ask(self, question: str, k: int = 5, now: datetime | None = None, log: bool = True) -> Answer:
-        now = now or datetime.now(timezone.utc)
+        now = now or datetime.now(UTC)
         passages = self.kb.passages()
         if not passages:
             return self._gap(question, log)

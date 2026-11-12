@@ -4,7 +4,7 @@ import argparse
 import json
 import sys
 import tempfile
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from importlib import resources
 from pathlib import Path
 
@@ -64,7 +64,7 @@ def cmd_demo(_args) -> int:
         TwinConfig(owner="bob", enabled_sources=["terminal", "ide", "pr_review", "runbook", "chat"]).save(bob_root)
         events = [Event.from_dict(json.loads(line)) for line in sample.read_text().splitlines() if line.strip()]
         # Shift the sample so its newest event happened yesterday; recency is part of the confidence score.
-        shift = datetime.now(timezone.utc) - timedelta(days=1) - max(e.time for e in events)
+        shift = datetime.now(UTC) - timedelta(days=1) - max(e.time for e in events)
         events = [Event(e.source, e.content, (e.time + shift).isoformat(timespec="seconds"), e.meta) for e in events]
         alice, bob = Twin(alice_root), Twin(bob_root)
         print("alice ingest:", alice.ingest([e for e in events if e.meta.get("owner") == "alice"]))

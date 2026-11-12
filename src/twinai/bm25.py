@@ -6,7 +6,10 @@ import re
 from collections import Counter
 
 _TOKEN = re.compile(r"[a-z0-9_]+")
-STOPWORDS = frozenset("a an the and or of to in on for is are was were be how what why when do does i we you it this that with".split())
+STOPWORDS = frozenset({
+    "a", "an", "the", "and", "or", "of", "to", "in", "on", "for", "is", "are", "was", "were", "be",
+    "how", "what", "why", "when", "do", "does", "i", "we", "you", "it", "this", "that", "with",
+})
 
 
 def tokenize(text: str) -> list[str]:

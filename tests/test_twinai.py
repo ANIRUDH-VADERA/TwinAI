@@ -4,7 +4,7 @@ import threading
 import unittest
 import urllib.error
 import urllib.request
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 from twinai.bm25 import BM25
@@ -17,7 +17,7 @@ from twinai.sanitize import sanitize
 from twinai.sessions import detect_domains, sessionize
 from twinai.twin import Twin
 
-NOW = datetime.now(timezone.utc)
+NOW = datetime.now(UTC)
 
 
 def ev(source, content, minutes_ago=60, **meta):
