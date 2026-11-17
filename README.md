@@ -7,7 +7,7 @@
 
 **A passive, privacy-first agent that turns an engineer's everyday work into a queryable "knowledge twin", so teammates get answers even when the expert is offline.**
 
-> I co-built the original TwinAI with a team of four at a company hackathon. My part was the platform architecture, the capture daemon, and the knowledge engine, and the team now uses it day to day. **This repository is an independent open-source reimplementation written from scratch.** It contains none of the original code. It keeps the architecture and ideas and replaces company-internal integrations with generic ones.
+> I co-built the original TwinAI with a team of four at a company hackathon. My part was the platform architecture, the capture daemon, and the knowledge engine, and the team now uses it day to day. That build captures **100,000+ actions per user** into a GitHub-backed knowledge-graph wiki that syncs every **15 minutes**. **This repository is an independent open-source reimplementation written from scratch.** It contains none of the original code. It keeps the architecture and ideas and replaces company-internal integrations with generic ones.
 
 ## The problem
 
